@@ -61,7 +61,7 @@ class FirestoreService {
         firstName: firstName.trim(),
         lastName: lastName.trim(),
         email: normalizedEmail,
-        password: password,
+        password: password.trim(),
         createdAt: DateTime.now(),
       );
 
@@ -99,18 +99,35 @@ class FirestoreService {
   }) async {
     try {
       final normalizedEmail = email.trim().toLowerCase();
+      final normalizedPassword = password.trim();
 
       final querySnapshot = await _studentsCollection
           .where('email', isEqualTo: normalizedEmail)
-          .where('password', isEqualTo: password)
-          .limit(1)
           .get();
 
       if (querySnapshot.docs.isEmpty) {
-        throw const AuthServiceException('Invalid email or password');
+        throw const AuthServiceException('No account found with this email.');
       }
 
-      return StudentModel.fromFirestore(querySnapshot.docs.first);
+      DocumentSnapshot<Map<String, dynamic>>? matchingDoc;
+      for (final doc in querySnapshot.docs) {
+        final storedPassword = (doc.data()['password'] ?? '') as String;
+        if (storedPassword == password ||
+            storedPassword.trim() == normalizedPassword ||
+            storedPassword == normalizedPassword ||
+            storedPassword.trim() == password) {
+          matchingDoc = doc;
+          break;
+        }
+      }
+
+      if (matchingDoc == null) {
+        throw const AuthServiceException(
+          'Password incorrect. Please try again.',
+        );
+      }
+
+      return StudentModel.fromFirestore(matchingDoc);
     } on AuthServiceException {
       rethrow;
     } on FirebaseException catch (e) {

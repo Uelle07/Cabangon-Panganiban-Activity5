@@ -113,11 +113,104 @@ class _LoginScreenState extends State<LoginScreen> {
 
     try {
       final StudentModel student = await _firestoreService.loginStudent(
-        email: _emailController.text,
+        email: _emailController.text.trim(),
         password: _passwordController.text,
       );
 
       if (!mounted) return;
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      // Show page modal stating that the user has successfully logged in
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext dialogContext) {
+          return Dialog(
+            key: const Key('login_success_modal'),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
+            ),
+            backgroundColor: Colors.white,
+            elevation: 8,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 68,
+                    height: 68,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFDCFCE7),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.check_circle_rounded,
+                      color: Color(0xFF16A34A),
+                      size: 40,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Login Successful',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w800,
+                      color: _darkText,
+                      letterSpacing: -0.4,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'You have successfully logged in as ${student.fullName.isNotEmpty ? student.fullName : student.email}.',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 14.5,
+                      color: _mutedGray,
+                      height: 1.4,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      key: const Key('modal_continue_button'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: _vibrantBlue,
+                        foregroundColor: Colors.white,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.of(dialogContext).pop();
+                      },
+                      child: const Text(
+                        'Continue',
+                        style: TextStyle(
+                          fontSize: 15.5,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      );
+
+      if (!mounted) return;
+
+      // Clear password field for security
+      _passwordController.clear();
 
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
@@ -382,8 +475,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           GestureDetector(
                             key: const Key('navigate_to_register_link'),
-                            onTap: () {
-                              Navigator.of(context).pushNamed('/register');
+                            onTap: () async {
+                              await Navigator.of(context).pushNamed('/register');
+                              if (mounted) {
+                                _emailController.clear();
+                                _passwordController.clear();
+                                _formKey.currentState?.reset();
+                              }
                             },
                             child: const Text(
                               'Sign up',

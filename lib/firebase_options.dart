@@ -28,46 +28,46 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'YOUR_WEB_API_KEY',
-    appId: '1:000000000000:web:0000000000000000000000',
-    messagingSenderId: '000000000000',
-    projectId: 'student-login-system-demo',
-    authDomain: 'student-login-system-demo.firebaseapp.com',
-    storageBucket: 'student-login-system-demo.appspot.com',
+    apiKey: 'AIzaSyAp5BUqpbStVveuD4YbeYAicrY83ZdHFPc',
+    appId: '1:1046840131322:web:88ab074555b7a109fc9343',
+    messagingSenderId: '1046840131322',
+    projectId: 'mad-activity5-auth',
+    authDomain: 'mad-activity5-auth.firebaseapp.com',
+    storageBucket: 'mad-activity5-auth.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'YOUR_ANDROID_API_KEY',
-    appId: '1:000000000000:android:0000000000000000000000',
-    messagingSenderId: '000000000000',
-    projectId: 'student-login-system-demo',
-    storageBucket: 'student-login-system-demo.appspot.com',
+    apiKey: 'AIzaSyCVab0O6oDehkTKOvxUkMWTUzGR5Xq3mwQ',
+    appId: '1:1046840131322:android:6d918f20a43ab714fc9343',
+    messagingSenderId: '1046840131322',
+    projectId: 'mad-activity5-auth',
+    storageBucket: 'mad-activity5-auth.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'YOUR_IOS_API_KEY',
-    appId: '1:000000000000:ios:0000000000000000000000',
-    messagingSenderId: '000000000000',
-    projectId: 'student-login-system-demo',
-    storageBucket: 'student-login-system-demo.appspot.com',
+    apiKey: 'AIzaSyCVab0O6oDehkTKOvxUkMWTUzGR5Xq3mwQ',
+    appId: '1:1046840131322:android:6d918f20a43ab714fc9343',
+    messagingSenderId: '1046840131322',
+    projectId: 'mad-activity5-auth',
+    storageBucket: 'mad-activity5-auth.firebasestorage.app',
     iosBundleId: 'com.example.studentAuthSystem',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'YOUR_MACOS_API_KEY',
-    appId: '1:000000000000:ios:0000000000000000000000',
-    messagingSenderId: '000000000000',
-    projectId: 'student-login-system-demo',
-    storageBucket: 'student-login-system-demo.appspot.com',
+    apiKey: 'AIzaSyCVab0O6oDehkTKOvxUkMWTUzGR5Xq3mwQ',
+    appId: '1:1046840131322:android:6d918f20a43ab714fc9343',
+    messagingSenderId: '1046840131322',
+    projectId: 'mad-activity5-auth',
+    storageBucket: 'mad-activity5-auth.firebasestorage.app',
     iosBundleId: 'com.example.studentAuthSystem',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'YOUR_WINDOWS_API_KEY',
-    appId: '1:000000000000:web:0000000000000000000000',
-    messagingSenderId: '000000000000',
-    projectId: 'student-login-system-demo',
-    authDomain: 'student-login-system-demo.firebaseapp.com',
-    storageBucket: 'student-login-system-demo.appspot.com',
+    apiKey: 'AIzaSyAp5BUqpbStVveuD4YbeYAicrY83ZdHFPc',
+    appId: '1:1046840131322:web:88ab074555b7a109fc9343',
+    messagingSenderId: '1046840131322',
+    projectId: 'mad-activity5-auth',
+    authDomain: 'mad-activity5-auth.firebaseapp.com',
+    storageBucket: 'mad-activity5-auth.firebasestorage.app',
   );
 }

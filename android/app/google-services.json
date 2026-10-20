@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1046840131322",
+    "project_id": "mad-activity5-auth",
+    "storage_bucket": "mad-activity5-auth.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046840131322:android:6d918f20a43ab714fc9343",
+        "android_client_info": {
+          "package_name": "com.example.student_auth_system"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVab0O6oDehkTKOvxUkMWTUzGR5Xq3mwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

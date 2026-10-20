@@ -113,6 +113,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
       );
   }
 
+  void _clearFormInputs() {
+    _firstNameController.clear();
+    _lastNameController.clear();
+    _emailController.clear();
+    _passwordController.clear();
+    _confirmPasswordController.clear();
+    _formKey.currentState?.reset();
+  }
+
   Future<void> _handleSignUp() async {
     FocusScope.of(context).unfocus();
 
@@ -131,13 +140,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     try {
       await _firestoreService.registerStudent(
-        firstName: _firstNameController.text,
-        lastName: _lastNameController.text,
-        email: _emailController.text,
+        firstName: _firstNameController.text.trim(),
+        lastName: _lastNameController.text.trim(),
+        email: _emailController.text.trim(),
         password: _passwordController.text,
       );
 
       if (!mounted) return;
+
+      // Ensure that the input boxes after successfully registering a new account are empty
+      _clearFormInputs();
 
       _showSnackBar('Registration successful! Please sign in.');
 

@@ -27,7 +27,7 @@ class StudentModel {
       'firstName': firstName.trim(),
       'lastName': lastName.trim(),
       'email': email.trim().toLowerCase(),
-      'password': password,
+      'password': password.trim(),
       'createdAt': Timestamp.fromDate(createdAt),
     };
   }
